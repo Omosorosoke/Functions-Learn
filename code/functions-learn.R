@@ -19,3 +19,17 @@ bmi <- function(weight_kg, height_m) {
 }
 
 bmi(c(89, 7), c(67, 4))
+
+percent_score <- function(mark, total) {
+  round(mark / total * 100, 1)
+}
+
+
+# Recycling and vectorization --------------------------------------------
+
+percent_score(c(45, 30, 18), 60) # The single value of the second argument is reused for each of the element in the vector
+squart_it <- function(n) {
+  n^2
+}
+
+squart_it() # Calling this with no argument would return a error
