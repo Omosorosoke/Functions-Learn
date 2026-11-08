@@ -39,7 +39,7 @@ squart_it() # Calling this with no argument would return a error
 
 # Passing extra arguments with the "..." argument.
 rounded_mean <- function(x, ..., digits = 2) {
-  round(mean(x, na.rm = TRUE), digits)
+  round(mean(x, na.rm = TRUE), digits) # Any unnamed value goes into ... everythingelse
 } # The dot ... argument takes everything else. You should name arguments that comes after ... when defining them.
 
 rounded_mean(c(3, 5, 7, 8, NA))
@@ -69,8 +69,34 @@ describe <- function(x, digits = 2, na.rm = TRUE) {
   answer
 } #  When you provide a value for a default argument, you still need to restate in the body to give the caller a preference for the value of the argument
 
-#Exercises
+# Exercises
 describe(c(4, 8, 15, 16, 23, 42))
 
 describe(c(4, 8, NA, 16), digits = 1)
 describe(c(4, 8, NA, 16), na.rm = FALSE)
+
+data.frame()
+
+make_label <- function(..., sep = '|') {
+  paste(...)
+}
+
+make_label(
+  "R",
+  "functions"
+)
+
+make_label(
+  'a',
+  'b',
+  sep = "-"
+) # An argument of my function is not automatically passed to the functions I call inside it, even if it has the same name. I have to pass it on myself.
+# Each function has its own separate set of arguments. Your sep and paste()’s sep just share a name. They aren’t connected until you link them.
+
+make_label <- function(..., sep = " | ") {
+  paste(...) # paste() uses its own default sep, " "
+}
+
+make_label <- function(..., sep = " | ") {
+  paste(..., sep = sep) # now paste() uses your sep
+} #  So your argument can control the inner function. That only happens when you pass it on explicitly, with sep = sep or na.rm = na.rm. If you don’t, the inner function falls back to its own default.
