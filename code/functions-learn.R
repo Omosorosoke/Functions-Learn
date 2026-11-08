@@ -46,29 +46,31 @@ rounded_mean(c(3, 5, 7, 8, NA))
 
 # Lazy evaluation
 
-# The value of an argument is not automatically used when you call a function 
-# but only when it is needed in the body of that function.
-
-
-\(x) mean(x)
-
+# The value of an argument is not automatically used when you call a function
+# but only when it is needed in the body of that function. Hence, the code below evaluates with no error.
 
 show_first <- function(x, y) {
   cat('starting\n')
   x + y
-} 
+}
 
 show_first(2, undefined)
 
-stop('boom')
 
+# Working
 
+describe <- function(x, digits = 2, na.rm = TRUE) {
+  answer <- c(
+    mean = mean(x, na.rm = na.rm),
+    median = median(x, na.rm = na.rm),
+    sd = sd(x, na.rm = na.rm)
+  )
+  answer <- round(answer, digits)
+  answer
+} #  When you provide a value for a default argument, you still need to restate in the body to give the caller a preference for the value of the argument
 
-describe(x, digits = 2, na.rm = TRUE)
+#Exercises
+describe(c(4, 8, 15, 16, 23, 42))
 
-
-describe(x, digits = 2, na.rm = TRUE) {
-   answer <- c()
-  answer <- c(answer, mean(x, na.rm = TRUE) )
-  answer <- (mean(x, na.rm = TRUE), median(x, na.rm = TRUE),sd(x, na.rm = TRUE)), 
-} 
+describe(c(4, 8, NA, 16), digits = 1)
+describe(c(4, 8, NA, 16), na.rm = FALSE)
