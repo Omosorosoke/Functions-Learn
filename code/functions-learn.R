@@ -100,3 +100,61 @@ make_label <- function(..., sep = " | ") {
 make_label <- function(..., sep = " | ") {
   paste(..., sep = sep) # now paste() uses your sep
 } #  So your argument can control the inner function. That only happens when you pass it on explicitly, with sep = sep or na.rm = na.rm. If you don’t, the inner function falls back to its own default.
+
+
+# Module 3 - Return values and scope -------------------------------------
+
+# This module answers two questions: what comes out of a function, and where a function looks for the variables it uses.
+
+#  Return
+##  Explicit return ()
+safe_divide <- function(a, b) {
+  if (b == 0) {
+    return(NA) # leave now, and skip the rest
+  }
+  a / b
+}
+
+safe_divide(10, 2)
+safe_divide(10, 0)
+
+##  To return multiple values with a list
+
+totals <- function(x) {
+  list(
+    total = sum(x),
+    count = length(x),
+    values = x
+  )
+}
+
+result <- totals(c(4, 7, 9))
+result$total
+result[["count"]]
+result$count
+
+
+# Scope and lexical scoping --------------------------------------------------------
+## Scope
+### At every function call, R creates a new and unique workspace called an environment that houses its arguments and every other variables inside it. Each environment is recreated with a new call and nothing is carried forward.
+
+## lexical scoping
+
+#  When a function uses a name it didn’t create itself, R searches in this order: the function call’s own workspace, holding its arguments and any variables the body creates, then in the workspace around where the function was written, then outward from there until it reaches the global workspace and finally the packages.
+rate <- 0.1
+
+add_tax <- function(price) {
+  price * (1 + rate) # rate isn't an argument, so R looks outside
+}
+
+add_tax(100)
+#> [1] 110
+
+rate <- 0.2
+add_tax(100)
+#> [1] 120      # same call, different answer
+
+#  Good practice: pass everything a function needs as an argument.
+add_tax <- function(price, rate = 0.1) {
+  price * (1 + rate)
+}
