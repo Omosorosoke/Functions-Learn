@@ -33,3 +33,42 @@ squart_it <- function(n) {
 }
 
 squart_it() # Calling this with no argument would return a error
+
+
+# Working with arguments -------------------------------------------------
+
+# Passing extra arguments with the "..." argument.
+rounded_mean <- function(x, ..., digits = 2) {
+  round(mean(x, na.rm = TRUE), digits)
+} # The dot ... argument takes everything else. You should name arguments that comes after ... when defining them.
+
+rounded_mean(c(3, 5, 7, 8, NA))
+
+# Lazy evaluation
+
+# The value of an argument is not automatically used when you call a function 
+# but only when it is needed in the body of that function.
+
+
+\(x) mean(x)
+
+
+show_first <- function(x, y) {
+  cat('starting\n')
+  x + y
+} 
+
+show_first(2, undefined)
+
+stop('boom')
+
+
+
+describe(x, digits = 2, na.rm = TRUE)
+
+
+describe(x, digits = 2, na.rm = TRUE) {
+   answer <- c()
+  answer <- c(answer, mean(x, na.rm = TRUE) )
+  answer <- (mean(x, na.rm = TRUE), median(x, na.rm = TRUE),sd(x, na.rm = TRUE)), 
+} 
