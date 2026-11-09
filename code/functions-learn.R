@@ -133,6 +133,17 @@ result$total
 result[["count"]]
 result$count
 
+##  Return a value without printing it
+
+log_note <- function(text) {
+  cat("Note:", text, "\n")
+  invisible(text)
+}
+
+log_note("data loaded")
+saved <- log_note("model fitted")
+saved
+
 
 # Scope and lexical scoping --------------------------------------------------------
 ## Scope
@@ -154,7 +165,32 @@ rate <- 0.2
 add_tax(100)
 #> [1] 120      # same call, different answer
 
-#  Good practice: pass everything a function needs as an argument.
+#  Good practice: Do not rely on global environment; pass everything a function needs as an argument .
 add_tax <- function(price, rate = 0.1) {
   price * (1 + rate)
 }
+
+invisible('Kola')
+
+range_info(c(3, 9, 4, 12))
+
+range_info <- function(x) {
+  list(
+    min = min(x),
+    max = max(x),
+    width = max(x) - min(x)
+  )
+}
+
+check <- range_info(c(3, 9, 4, 12))
+check$width
+check[['width']]
+
+scale_01 <- function(x) {
+  (x - min(x)) / (max(x) - min(x))
+}
+
+scale_01(c(2, 4, 6))
+
+
+scale_01(c(5, 5, 5))
