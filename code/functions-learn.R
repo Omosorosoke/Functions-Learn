@@ -150,6 +150,9 @@ saved
 ### At every function call, R creates a new and unique workspace called an environment that houses its arguments and every other variables inside it. Each environment is recreated with a new call and nothing is carried forward.
 
 ## lexical scoping
+#  Where a variable is needed by a function, the function looks at where the function was defined and not where it was called.
+#  Two environment global environment and function environment. You can check a function environment with this syntax  ; environment()
+#  Execustion environment, enclosing environment and parent environment
 
 #  When a function uses a name it didn’t create itself, R searches in this order: the function call’s own workspace, holding its arguments and any variables the body creates, then in the workspace around where the function was written, then outward from there until it reaches the global workspace and finally the packages.
 rate <- 0.1
