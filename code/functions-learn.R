@@ -187,10 +187,13 @@ check$width
 check[['width']]
 
 scale_01 <- function(x) {
+  if (max(x) == min(x)) {
+    return(
+      rep(0, 3)
+    )
+  }
   (x - min(x)) / (max(x) - min(x))
 }
 
 scale_01(c(2, 4, 6))
-
-
 scale_01(c(5, 5, 5))
