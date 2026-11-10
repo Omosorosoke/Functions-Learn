@@ -200,3 +200,8 @@ scale_01 <- function(x) {
 
 scale_01(c(2, 4, 6))
 scale_01(c(5, 5, 5))
+
+# Module 4- Logic inside  function ---------------------------------------
+
+## Functions that make decisions and repeat work
+#
