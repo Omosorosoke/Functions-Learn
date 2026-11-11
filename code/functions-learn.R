@@ -204,4 +204,11 @@ scale_01(c(5, 5, 5))
 # Module 4- Logic inside  function ---------------------------------------
 
 ## Functions that make decisions and repeat work
-#
+# if and else work for just a conditional execution while ifelse works is for vectors.
+# Hence use if just one single-value object but ifelse for a vector object
+
+grade <- function(score) {
+  ifelse(score >= 50, 'pass', 'fail')
+}
+
+grade(c(40, 60))
