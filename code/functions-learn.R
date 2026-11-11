@@ -210,5 +210,32 @@ scale_01(c(5, 5, 5))
 grade <- function(score) {
   ifelse(score >= 50, 'pass', 'fail')
 }
+grade(c(40, 60)) # if conditional execution does not work for vector object
 
-grade(c(40, 60))
+
+grade_letter <- function(score) {
+  ifelse(
+    score >= 70,
+    "A",
+    ifelse(
+      score >= 60 & score <= 69,
+      "B",
+      ifelse(score >= 50 & score <= 59, "C", "F")
+    )
+  )
+}
+
+grade_letter(c(85, 65, 52, 30, NA))
+
+
+to_meters <- function(value, unit) {
+  switch(
+    unit,
+    'km' = value * 1000,
+    "mi" = value * 1609.344,
+    "ft" = value * 0.3048,
+  )
+}
+
+
+to_metres(5, "km")
