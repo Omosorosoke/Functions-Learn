@@ -218,9 +218,9 @@ grade_letter <- function(score) {
     score >= 70,
     "A",
     ifelse(
-      score >= 60 & score <= 69,
+      score >= 60,
       "B",
-      ifelse(score >= 50 & score <= 59, "C", "F")
+      ifelse(score >= 50, "C", "F")
     )
   )
 }
@@ -228,14 +228,17 @@ grade_letter <- function(score) {
 grade_letter(c(85, 65, 52, 30, NA))
 
 
-to_meters <- function(value, unit) {
+to_metres <- function(value, unit) {
   switch(
     unit,
     'km' = value * 1000,
     "mi" = value * 1609.344,
-    "ft" = value * 0.3048,
+    "ft" = value * 0.3048
   )
 }
 
 
 to_metres(5, "km")
+to_metres(2, "mi")
+to_metres(10, "ft")
+to_metres(3, "yd")
