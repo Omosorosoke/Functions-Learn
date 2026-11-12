@@ -204,7 +204,7 @@ scale_01(c(5, 5, 5))
 # Module 4- Logic inside  function ---------------------------------------
 
 ## Functions that make decisions and repeat work
-# if and else work for just a conditional execution while ifelse works is for vectors.
+# if and else work for just a conditional execution. Where you what execute a decision based on just one condition while ifelse works is for vectors.
 # Hence use if just one single-value object but ifelse for a vector object
 
 grade <- function(score) {
@@ -233,7 +233,8 @@ to_metres <- function(value, unit) {
     unit,
     'km' = value * 1000,
     "mi" = value * 1609.344,
-    "ft" = value * 0.3048
+    "ft" = value * 0.3048,
+    NA
   )
 }
 
@@ -242,3 +243,6 @@ to_metres(5, "km")
 to_metres(2, "mi")
 to_metres(10, "ft")
 to_metres(3, "yd")
+
+
+switch() #  Selecting one option from several named alternatives
