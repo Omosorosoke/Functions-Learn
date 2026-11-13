@@ -246,3 +246,41 @@ to_metres(3, "yd")
 
 
 switch() #  Selecting one option from several named alternatives
+
+
+# Mid-point test ---------------------------------------------------------
+clean_scores <- function(scores, max_score = 100, fill = 0) {
+  cleaned_scores <- ifelse(
+    is.na(scores),
+    fill,
+    ifelse(scores >= max_score, max_score, scores)
+  ) # Pls dont forget to always store the return value of your test. Here it is saved in cleaned_score
+  list(
+    scores = cleaned_scores,
+    average = mean(cleaned_scores), # I can then use the cleaned_scores in subsequent computation
+    passed = sum(cleaned_scores >= 50) # You can perform arithmetic operation like sum on logical values(sum add the 1s that represent TRUE)
+  )
+}
+
+clean_scores(c(45, NA, 120, 67))
+
+clean_scores(c(80, NA), fill = 50)
+clean_scores(c(30, 95), max_score = 90)
+
+
+clean_prices <- function(prices, max_price = 500, fill = 0) {
+  cleaned_prices <- ifelse(
+    is.na(prices),
+    fill,
+    ifelse(prices > max_price, max_price, prices) # This test two conditions on the vector. Only ifelse works with vector
+  )
+  list(
+    prices = cleaned_prices,
+    total = sum(cleaned_prices),
+    expensive = sum(cleaned_prices >= 100)
+  )
+}
+
+clean_prices(c(120, NA, 650, 40))
+clean_prices(c(NA, 80), fill = 10)
+clean_prices(c(300, 700), max_price = 600)
