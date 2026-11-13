@@ -284,3 +284,37 @@ clean_prices <- function(prices, max_price = 500, fill = 0) {
 clean_prices(c(120, NA, 650, 40))
 clean_prices(c(NA, 80), fill = 10)
 clean_prices(c(300, 700), max_price = 600)
+
+
+# Functions and repeat ---------------------------------------------------
+
+squares <- numeric(5) # creates a numeric vector with elements initialized at zero. 5 is the length of the desired vector
+# Useful to create an empty vector before populating
+tri <- numeric(3)
+tri[1] <- 89
+tri[2] <- 45
+tri[3] <- 78
+
+# similarly
+integer(5)
+logic <- logical(5)
+character(5)
+logic[1] <- 1
+logic[2] <- TRUE
+logic
+tri
+
+for (i in 1:5) {
+  squares[i] <- i^2
+}
+squares
+
+marks <- c(45, 67, 82, 91)
+
+for (i in seq_along(marks)) {
+  print(marks[i])
+}
+
+length(x) # tells you how many elements an object contains.
+seq_along(x) # tells you the index positions of those elements.
+seq_len(n) # generates a sequence of integers from 1 to n.
