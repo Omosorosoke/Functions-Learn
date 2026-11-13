@@ -328,3 +328,11 @@ n
 # In R, many loops aren’t needed at all:
 # Before you write a loop, ask: can a vectorised operation or ifelse() do this? If so, the code is usually shorter, faster and clearer. Save loops for steps that depend on the previous result, as in the while example.
 squares <- (1:5)^2 # same result as the loop above
+
+
+# Reliable functions -----------------------------------------------------
+# stop() and stopifnot() 
+# Rule of thumb: use stopifnot() for quick checks, and stop() when the message needs details, such as the value received
+
+
+Compare if() with any(), and all()
