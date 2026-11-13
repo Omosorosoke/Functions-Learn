@@ -318,3 +318,13 @@ for (i in seq_along(marks)) {
 length(x) # tells you how many elements an object contains.
 seq_along(x) # tells you the index positions of those elements.
 seq_len(n) # generates a sequence of integers from 1 to n.
+
+n <- 1
+while (n < 100) {
+  n <- n * 2
+}
+n
+
+# In R, many loops aren’t needed at all:
+# Before you write a loop, ask: can a vectorised operation or ifelse() do this? If so, the code is usually shorter, faster and clearer. Save loops for steps that depend on the previous result, as in the while example.
+squares <- (1:5)^2 # same result as the loop above
