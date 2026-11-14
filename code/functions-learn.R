@@ -331,8 +331,64 @@ squares <- (1:5)^2 # same result as the loop above
 
 
 # Reliable functions -----------------------------------------------------
-# stop() and stopifnot() 
-# Rule of thumb: use stopifnot() for quick checks, and stop() when the message needs details, such as the value received
+## stop() and stopifnot()
+# Rule of thumb: use stopifnot() for quick checks, and stop() when the message needs details, such as the value received. stopifnot() is
+
+# Compare if() with any(), and all()
+
+safe_sqrt <- function(x) {
+  if (!is.numeric(x)) {
+    stop("numeric expected but got ", class(x)[1])
+  }
+  if (any(x < 0, na.rm = TRUE)) {
+    stop("'x' must not contain negative number")
+  }
+  sqrt(x)
+}
+
+safe_sqrt(c(4, -1))
+safe_sqrt("4")
+
+h <- function(x) {
+  #stopifnot("'x' must be numeric " = is.numeric(x), length(x) > 0 )
+  stopifnot(is.numeric(x), length(x) > 0)
+  x
+}
+
+h("a")
+
+## warning
+
+average <- function(
+){
+  if(anyNA(x)){
+    warning("There are ", sum(is.na(x), "in this vector"))
+    x <- 
+  }
+}
 
 
-Compare if() with any(), and all()
+# warning() reports a potential problem but continues execution
+# message() provides information but continues execution
+# stop() terminates an execution but reports an error
+
+
+
+# NA and functions -------------------------------------------------------
+
+is.na(x)	# Which elements are missing?
+anyNA(x)	# Is at least one element missing?
+all(is.na(x))	# Are all elements missing?
+sum(is.na(x))	# How many elements are missing?
+
+# anyNA() checks whether at least one element is missing while is.na() checks each element individually
+grading  <- function(x){
+  if(anyNA(x)) {
+    stop("x must not contain any missing number")
+  }
+ifelse(x >= 70, "F", "T")
+}
+
+grading(NA)
+
+
