@@ -331,6 +331,9 @@ squares <- (1:5)^2 # same result as the loop above
 
 
 # Reliable functions -----------------------------------------------------
+# A reliable function should anticipate what can go wrong and respond appropriately
+# rather  allow an unexpected error to terminate the operations
+
 ## stop() and stopifnot()
 # Rule of thumb: use stopifnot() for quick checks, and stop() when the message needs details, such as the value received. stopifnot() is
 
@@ -359,36 +362,53 @@ h("a")
 
 ## warning
 
-average <- function(
-){
-  if(anyNA(x)){
-    warning("There are ", sum(is.na(x), "in this vector"))
-    x <- 
+average <- function(x) {
+  if (anyNA(x)) {
+    warning("Removing ", sum(is.na(x)), " missing value(s)")
+    x <- x[!is.na(x)]
   }
+  mean(x)
 }
+
+average(c(2, NA, 4))
 
 
 # warning() reports a potential problem but continues execution
 # message() provides information but continues execution
 # stop() terminates an execution but reports an error
 
+# Message(); progress information
+
+load_data <- function(path) {
+  x <- read.csv(path)
+  message("loaded ", nrow(x), "rows from ", path)
+  x
+}
+
+# Intercepts an error  and decides what the function should do when they encounter errror.
+# Syntax is divided into two parts
+
+tryCatch(
+  {
+    # Code to execute
+  },
+  error = function(e) {
+    # What to do if an error occurs
+  }
+) #  returns the result of the normal expression if everything succeeds, or the result of the error handler if an error occurs.
 
 
 # NA and functions -------------------------------------------------------
 
-is.na(x)	# Which elements are missing?
-anyNA(x)	# Is at least one element missing?
-all(is.na(x))	# Are all elements missing?
-sum(is.na(x))	# How many elements are missing?
+is.na(x) # Which elements are missing?
+anyNA(x) # Is at least one element missing?
+all(is.na(x)) # Are all elements missing?
+sum(is.na(x)) # How many elements are missing?
 
 # anyNA() checks whether at least one element is missing while is.na() checks each element individually
-grading  <- function(x){
-  if(anyNA(x)) {
+grading <- function(x) {
+  if (anyNA(x)) {
     stop("x must not contain any missing number")
   }
-ifelse(x >= 70, "F", "T")
+  ifelse(x >= 70, "F", "T")
 }
-
-grading(NA)
-
-
