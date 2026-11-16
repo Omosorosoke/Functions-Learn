@@ -370,7 +370,7 @@ average <- function(x) {
   mean(x)
 }
 
-average(c(2, NA, 4))
+average(c(2, NA, 4)) # Example
 
 
 # warning() reports a potential problem but continues execution
@@ -385,6 +385,7 @@ load_data <- function(path) {
   x
 }
 
+# tryCatch
 # Intercepts an error  and decides what the function should do when they encounter errror.
 # Syntax is divided into two parts
 
@@ -396,6 +397,32 @@ tryCatch(
     # What to do if an error occurs
   }
 ) #  returns the result of the normal expression if everything succeeds, or the result of the error handler if an error occurs.
+
+divider <- function(a, b) {
+  tryCatch(
+    {
+      a / b
+    },
+    error = function(e) {
+      NA_real_
+    }
+  )
+}
+
+divider(56, "hello") # Example
+
+
+safe_log <- function(x) {
+  tryCatch(
+    log(x),
+    error = function(e) {
+      message("Could not compute log: ", conditionMessage(e))
+      NA
+    }
+  )
+} # e is the condition object and conditionMessage exracts the message from the condition object
+
+safe_log("a")
 
 
 # NA and functions -------------------------------------------------------
