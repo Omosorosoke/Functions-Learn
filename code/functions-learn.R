@@ -439,3 +439,32 @@ grading <- function(x) {
   }
   ifelse(x >= 70, "F", "T")
 }
+
+# Debugging a function ---------------------------------------------------
+
+# using print()
+calculate_average <- function(x) {
+  print(x)
+  total <- sum(x)
+  print(total)
+
+  average <- total / length(x)
+  print(average)
+
+  return(average)
+}
+
+calculate_average(c(10, 20, NA))
+
+
+# using browser()
+calculate_ave <- function(x) {
+  totals <- sum(x)
+  browser()
+
+  average <- totals / length(x)
+  return(average)
+}
+
+
+calculate_average(c(10, 20, 30))
